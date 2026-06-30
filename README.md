@@ -5,7 +5,7 @@
 [Add your deployed link here]
 
 ## Screenshots
-[Add screenshots of home, generate, and editor pages]
+Screenshot 2026-06-30 111119.png
 
 ## Features
 - AI-powered website generation from text prompts
