@@ -1,3 +1,4 @@
+
 import User from "../models/user.model.js"
 import jwt from "jsonwebtoken"
 
@@ -23,3 +24,4 @@ export const logOut = async (req, res) => {
         return res.status(500).json({ message: `log out error ${error}` })
     }
 }
+
