@@ -6,6 +6,7 @@
 
 ## Screenshots
 Screenshot 2026-06-30 111119.png
+Screenshot 2026-06-30 111101.png
 
 ## Features
 - AI-powered website generation from text prompts
