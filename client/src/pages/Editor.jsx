@@ -7,6 +7,9 @@ import { useState } from 'react'
 import { ArrowLeft, Code, Code2, MessageCircle, MessageSquare, Monitor, Rocket, Send, X } from 'lucide-react'
 import { useRef } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
+import useVoiceCommand from '../hooks/useVoiceCommand'
+import { Mic, MicOff } from "lucide-react"
+
 
 import Editor from '@monaco-editor/react';
 function WebsiteEditor() {
@@ -46,6 +49,11 @@ function WebsiteEditor() {
             console.log(error)
         }
     }
+    const handleVoiceResult = (text) => {
+        setPrompt((prev) => (prev ? prev + " " + text : text))
+    }
+    
+    const { isListening, startListening, stopListening, error: voiceError } = useVoiceCommand(handleVoiceResult)
 
     const handleDeploy = async () => {
             try {
@@ -146,11 +154,19 @@ function WebsiteEditor() {
 
                     </div>
                     <div className='p-3 border-t border-white/10'>
-                        <div className='flex gap-2'>
-                            <input placeholder='Describe Changes...' className='flex-1 resize-none rounded-2xl px-4 py-3 bg-white/5 border border-white/10 text-sm outline-none' onChange={(e) => setPrompt(e.target.value)} value={prompt} />
-                            <button className='px-4 py-3 rounded-2xl bg-white text-black' disabled={updateLoading} onClick={handleUpdate}><Send size={14} /></button>
-                        </div>
-                    </div>
+    <div className='flex gap-2'>
+        <input placeholder='Describe Changes...' className='flex-1 resize-none rounded-2xl px-4 py-3 bg-white/5 border border-white/10 text-sm outline-none' onChange={(e) => setPrompt(e.target.value)} value={prompt} />
+        <button
+            className={`px-3 py-3 rounded-2xl transition ${isListening ? "bg-red-500 animate-pulse" : "bg-white/10 hover:bg-white/20"}`}
+            onClick={isListening ? stopListening : startListening}
+            type="button"
+        >
+            {isListening ? <Mic size={14} /> : <MicOff size={14} />}
+        </button>
+        <button className='px-4 py-3 rounded-2xl bg-white text-black' disabled={updateLoading} onClick={handleUpdate}><Send size={14} /></button>
+    </div>
+    {voiceError && <p className='text-xs text-red-400 mt-1'>{voiceError}</p>}
+</div>
 
                 </>
             </aside>
@@ -217,11 +233,19 @@ function WebsiteEditor() {
 
                     </div>
                     <div className='p-3 border-t border-white/10'>
-                        <div className='flex gap-2'>
-                            <input placeholder='Describe Changes...' className='flex-1 resize-none rounded-2xl px-4 py-3 bg-white/5 border border-white/10 text-sm outline-none' onChange={(e) => setPrompt(e.target.value)} value={prompt} />
-                            <button className='px-4 py-3 rounded-2xl bg-white text-black' disabled={updateLoading} onClick={handleUpdate}><Send size={14} /></button>
-                        </div>
-                    </div>
+    <div className='flex gap-2'>
+        <input placeholder='Describe Changes...' className='flex-1 resize-none rounded-2xl px-4 py-3 bg-white/5 border border-white/10 text-sm outline-none' onChange={(e) => setPrompt(e.target.value)} value={prompt} />
+        <button
+            className={`px-3 py-3 rounded-2xl transition ${isListening ? "bg-red-500 animate-pulse" : "bg-white/10 hover:bg-white/20"}`}
+            onClick={isListening ? stopListening : startListening}
+            type="button"
+        >
+            {isListening ? <Mic size={14} /> : <MicOff size={14} />}
+        </button>
+        <button className='px-4 py-3 rounded-2xl bg-white text-black' disabled={updateLoading} onClick={handleUpdate}><Send size={14} /></button>
+    </div>
+    {voiceError && <p className='text-xs text-red-400 mt-1'>{voiceError}</p>}
+</div>
 
                 </>
                     </motion.div>
