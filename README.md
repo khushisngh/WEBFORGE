@@ -5,8 +5,13 @@
 [Add your deployed link here]
 
 ## Screenshots
-Screenshot 2026-06-30 111119.png
-Screenshot 2026-06-30 111101.png
+
+### Landing Page
+![Landing Page](./screenshots/Screenshot%202026-06-30%20111119.png)
+
+### Dashboard
+![Dashboard](./screenshots/Screenshot%202026-06-30%20111101.png)
+
 
 ## Features
 - AI-powered website generation from text prompts
