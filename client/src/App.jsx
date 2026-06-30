@@ -1,3 +1,4 @@
+
 import React from 'react'
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom"
 import Home from './pages/Home'
@@ -9,7 +10,7 @@ import WebsiteEditor from './pages/Editor'
 import LiveSite from './pages/LiveSite'
 import Pricing from './pages/Pricing'
 
-export const serverUrl="https://webforge-uffq.onrender.com"
+export const serverUrl="http://localhost:5000"
 function App() {
   useGetCurrentUser()
   const {userData}=useSelector(state=>state.user)
@@ -28,3 +29,4 @@ function App() {
 }
 
 export default App
+
